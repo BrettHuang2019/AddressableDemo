@@ -7,9 +7,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 298601515891408672, guid: 5ffba58a196ff1a4f87b537dd52c4d1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8371080196235147510}
+    - target: {fileID: 298601515891408672, guid: 5ffba58a196ff1a4f87b537dd52c4d1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnOkClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 298601515891408672, guid: 5ffba58a196ff1a4f87b537dd52c4d1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIDeletePanel, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1086759997774672272, guid: 5ffba58a196ff1a4f87b537dd52c4d1e, type: 3}
       propertyPath: m_Text
       value: Delete Bundle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5885763310280735023, guid: 5ffba58a196ff1a4f87b537dd52c4d1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8371080196235147510}
+    - target: {fileID: 5885763310280735023, guid: 5ffba58a196ff1a4f87b537dd52c4d1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCancelClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 5885763310280735023, guid: 5ffba58a196ff1a4f87b537dd52c4d1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIDeletePanel, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8248195358443869939, guid: 5ffba58a196ff1a4f87b537dd52c4d1e, type: 3}
       propertyPath: m_Pivot.x
@@ -101,3 +125,56 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ffba58a196ff1a4f87b537dd52c4d1e, type: 3}
+--- !u!114 &198139363483617865 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 172144918007170240, guid: 5ffba58a196ff1a4f87b537dd52c4d1e, type: 3}
+  m_PrefabInstance: {fileID: 62059011234745993}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &358214465807446441 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 298601515891408672, guid: 5ffba58a196ff1a4f87b537dd52c4d1e, type: 3}
+  m_PrefabInstance: {fileID: 62059011234745993}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5868776201330177958 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5885763310280735023, guid: 5ffba58a196ff1a4f87b537dd52c4d1e, type: 3}
+  m_PrefabInstance: {fileID: 62059011234745993}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &8633924245708480330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8578695439519601091, guid: 5ffba58a196ff1a4f87b537dd52c4d1e, type: 3}
+  m_PrefabInstance: {fileID: 62059011234745993}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8371080196235147510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8633924245708480330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc6267e3265a46698c1018c0d79b8167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _size: {fileID: 198139363483617865}
+  _okBtn: {fileID: 358214465807446441}
+  _cancelBtn: {fileID: 5868776201330177958}

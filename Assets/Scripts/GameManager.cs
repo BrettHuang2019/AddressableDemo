@@ -12,11 +12,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public UIManager _UIManager;
-    public Slider progressBar;
-    public List<AssetReference> levelReferences = new List<AssetReference>();
-    public AsyncOperationHandle<SceneInstance> handle;
-    public Text debugText;
-    private int sceneDownloaded;
+    private AsyncOperationHandle<SceneInstance> handle;
 
     private static GameManager _instance;
 
@@ -26,107 +22,48 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
     }
-
-    private void Start()
+    
+    public void LoadScene(AssetReference levelRef)
     {
-        _UIManager.Init();
-
-        for (int i = 0; i < levelReferences.Count; i++)
-        {
-            StartCoroutine(GetDownloadSize(i));
-        }
-    }
-
-    private void GetBundleStatus()
-    {
-        foreach (var level in levelReferences)
-        {
-            
-        }
-    }
-
-    public void ClearCash(int levelIndex)
-    {
-        Addressables.ClearDependencyCacheAsync(levelReferences[levelIndex].RuntimeKey);
-    }
-
-    private IEnumerator GetDownloadSize(int levelIndex)
-    {
-        Debug.Log(levelIndex);
-        AsyncOperationHandle<long> getDownloadSize = Addressables.GetDownloadSizeAsync(levelReferences[levelIndex].RuntimeKey);
-        yield return getDownloadSize;
-
-        Debug.Log(getDownloadSize.Result.ToString());
-        if (getDownloadSize.Result > 0)
-        {
-            DebugLog(getDownloadSize.Result.ToString());
-            _UIManager.InitLevelBtn(levelIndex, true);
-        }
-        else
-            _UIManager.InitLevelBtn(levelIndex, false);
-    }
-
-    public void LoadScene(int sceneIndex)
-    {
-        _UIManager.OnEnterLevel();
-        var loadScene = Addressables.LoadSceneAsync(levelReferences[sceneIndex], LoadSceneMode.Additive);
+        _UIManager.gameObject.SetActive(false);
+        var loadScene = Addressables.LoadSceneAsync(levelRef, LoadSceneMode.Additive);
         loadScene.Completed += obj => handle = obj;
     }
 
-    public void OpenDownloadPanel(int index)
+    public void StartDownloadScene(AssetReference levelRef)
     {
-        Addressables.GetDownloadSizeAsync(levelReferences[index].RuntimeKey).Completed += op =>
-        {
-            _UIManager.ShowDownloadPanel(true, index,0, op.Result);
-        };
-    }
-
-    public void StartDownloadScene(int index)
-    {
-        StartCoroutine(DownloadScene(index));
+        StartCoroutine(DownloadScene(levelRef));
     }
     
-    IEnumerator DownloadScene(int index)
+    IEnumerator DownloadScene(AssetReference levelRef)
     {
-        var downloadScene = Addressables.DownloadDependenciesAsync(levelReferences[index], false);
-        downloadScene.Completed += SceneDownloadComplete;
-        sceneDownloaded = index;
-        
+        var downloadScene = Addressables.DownloadDependenciesAsync(levelRef, true);
 
         while (!downloadScene.IsDone)
         {
             var status = downloadScene.GetDownloadStatus();
-            float progress = status.Percent;
-            _UIManager.ShowDownloadPanel(true, index, progress);
+            _UIManager.SetDownloadProgress(status.Percent);
             yield return null;
         }
-    }
-
-    private void SceneDownloadComplete(AsyncOperationHandle obj)
-    {
-        _UIManager.ShowDownloadPanel(false);
-        _UIManager.InitLevelBtn(sceneDownloaded,false);
-    }
-
-    public void OpenDeletePanel(int index)
-    {
-        _UIManager.ShowDownloadPanel(false);
+        
+        _UIManager.CloseDownloadPanel();
+        _UIManager.RefreshLevelBtns();
     }
 
     public void UnloadScene()
     {
-        Addressables.UnloadSceneAsync(handle, true).Completed += op =>
+        Addressables.UnloadSceneAsync(handle).Completed += op =>
         {
-            if (op.Status == AsyncOperationStatus.Succeeded)
-            {
-                DebugLog("Successfully unloaded scene.");
-                _UIManager.OnExitLevel();
-            }
+            if (op.Status != AsyncOperationStatus.Succeeded) return;
+            
+            _UIManager.gameObject.SetActive(true);
+            _UIManager.OnExitLevel();
         };
     }
-
-    private void DebugLog(string log)
+    
+    public void ClearCache(AssetReference levelRef)
     {
-        debugText.text += log + "\n";
+        Addressables.ClearDependencyCacheAsync(levelRef);
     }
+
 }
