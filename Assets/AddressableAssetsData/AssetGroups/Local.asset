@@ -29,6 +29,11 @@ MonoBehaviour:
     m_Address: PigChef_res
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 94cb87165bea55043b3894b44490db31
+    m_Address: pic1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Pic
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 41e6037f3b9f3674fbf7600dd3d933a5, type: 2}
   m_SchemaSet:
