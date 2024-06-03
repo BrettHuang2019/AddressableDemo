@@ -73,3 +73,6 @@ crashlytics-build.properties
 
 # JetBrains Rider
 .idea/
+
+/ServerData/
+
