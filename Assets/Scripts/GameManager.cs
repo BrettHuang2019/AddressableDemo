@@ -11,10 +11,6 @@ public class GameManager : MonoBehaviour
 {
     public UIManager _UIManager;
     
-    [TextArea(3,5)]
-    public string bucketURL;
-    [SerializeField] private string _extraCataloguePath;
-    
     private AsyncOperationHandle<SceneInstance> handle;
 
     private static GameManager _instance;
@@ -25,18 +21,6 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
     }
-    
-    async void Start()
-    {
-        await LoadExtraCatalogue();
-    }
-    
-    private async Task LoadExtraCatalogue()
-    {
-        AsyncOperationHandle<IResourceLocator> handle
-            = Addressables.LoadContentCatalogAsync(bucketURL + _extraCataloguePath, true);
-        await handle.Task;
-    } 
     
     public void LoadScene(AssetReference levelRef)
     {

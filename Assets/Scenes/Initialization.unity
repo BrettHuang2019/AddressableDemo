@@ -801,6 +801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 825410917}
   - component: {fileID: 825410916}
+  - component: {fileID: 825410918}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -821,8 +822,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _UIManager: {fileID: 1415123769}
-  bucketURL: http://localhost:8000/StandaloneWindows64/
-  _extraCataloguePath: catalog_2024.06.03.19.45.15.json
 --- !u!4 &825410917
 Transform:
   m_ObjectHideFlags: 0
@@ -838,6 +837,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &825410918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825410915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d5f80f987a4178b6c9eaf2afc48365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  catalogURL: http://localhost:8000/StandaloneWindows64/ExtraCatalogs/
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
